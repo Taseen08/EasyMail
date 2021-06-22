@@ -1,5 +1,5 @@
 import smtplib
-import SpeechRecognition as sr
+import speech_recognition as sr
 import pyttsx3
 from email.message import EmailMessage
 
@@ -44,11 +44,22 @@ favourite_list = {
     'wrong': 'hiitswrong@gmail.com'
 }
 
+def findKey(fav,key):
+	if key in fav:
+		return True
+	else:
+		return False
+
 
 def get_email_info():
-    talk('To Whom you want to send email')
+    talk('To Whom would you want to send the email')
     name = get_info()
-    receiver = favourite_list[name]
+    receiver = 'default'
+    if findKey(favourite_list, name) == True:
+        receiver = favourite_list[name]
+    else:
+        talk('Could not find in favourites. Please say the entire email')
+        receiver = get_info()
     print(receiver)
     talk('What is the subject of your email?')
     subject = get_info()
