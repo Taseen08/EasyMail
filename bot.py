@@ -1,5 +1,5 @@
 import smtplib
-import speech_recognition as sr
+import SpeechRecognition as sr
 import pyttsx3
 from email.message import EmailMessage
 
@@ -15,7 +15,7 @@ def talk(text):
 def get_info():
     try:
         with sr.Microphone() as source:
-            print('listening...')
+            print('I am listening...')
             voice = listener.listen(source)
             info = listener.recognize_google(voice)
             print(info)
@@ -37,19 +37,18 @@ def send_email(receiver, subject, message):
     server.send_message(email)
 
 
-email_list = {
-    'dude': 'COOL_DUDE_EMAIL',
-    'bts': 'diamond@bts.com',
-    'pink': 'jennie@blackpink.com',
-    'lisa': 'lisa@blackpink.com',
-    'irene': 'irene@redvelvet.com'
+favourite_list = {
+    'me': 'taseenasm@gmail.com',
+    'work': 'ataseen@uwaterloo.ca',
+    'another': 'taseen951753@gmail.com',
+    'wrong': 'hiitswrong@gmail.com'
 }
 
 
 def get_email_info():
     talk('To Whom you want to send email')
     name = get_info()
-    receiver = email_list[name]
+    receiver = favourite_list[name]
     print(receiver)
     talk('What is the subject of your email?')
     subject = get_info()
